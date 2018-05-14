@@ -1,0 +1,19 @@
+<div *ngIf="hero">
+  <h2>{{ hero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+
+  <div>
+    <label>name:
+      <!-- <input [(ngModel)]="hero.name" placeholder="name"/> -->
+      <input id="name" name="name" class="form-control" required minlength="4" forbiddenName="bob" [(ngModel)]="hero.name" #name="ngModel" > 
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger"> 
+      <div *ngIf="name.errors.required"> Name is required. </div>
+      <div *ngIf="name.errors.minlength"> Name must be at least 4 characters long. </div> 
+      <div *ngIf="name.errors.forbiddenName"> Name cannot be Bob. </div>
+      </div>
+      
+    </label>
+  </div>
+  <button (click)="save()">save</button>
+  <button (click)="goBack()">go back</button>
+</div>
